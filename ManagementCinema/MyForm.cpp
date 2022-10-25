@@ -1,4 +1,5 @@
 #include "MyForm.h"
+#include "Store.h"
 
 using namespace System;
 using namespace System::Windows::Forms;
@@ -31,6 +32,9 @@ String^ ManagementCinema::MyForm::getName(int i)
 
 void ManagementCinema::MyForm::LoadDataGhe()
 {
+	Store^ s = gcnew Store();
+	s->GetAllPhims();
+	
 	for (int i = 0; i < 8; i++)
 	{
 		dtData->Columns->Add("" + i);
@@ -41,8 +45,21 @@ void ManagementCinema::MyForm::LoadDataGhe()
 		DataRow^ dr = dtData->NewRow();
 		for (int j = 0; j < 8; j++)
 		{
-			dr[j] = 0;
+			if (i % 2 == 0) {
+				dr[j] = 1;
+			}
+			else {
+				dr[j] = 0;
+			}
+			
 		}
 		dtData->Rows->Add(dr);
 	}
+
+	for (int i = 0; i < 8; i++) {
+		local[i] = gcnew array< Int32 >(8);
+		for (int j = 0; j < 8; j++)
+			local[i][j] = 1;
+	}
+
 }
