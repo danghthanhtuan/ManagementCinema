@@ -1,6 +1,5 @@
 #pragma once
 using namespace System;
-namespace Phim {
 	public ref class Phim {
 		int ID;
 		String^ Ten;
@@ -19,4 +18,3 @@ namespace Phim {
 		{
 		}
 	};
-}

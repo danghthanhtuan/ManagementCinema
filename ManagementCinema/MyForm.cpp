@@ -30,36 +30,36 @@ String^ ManagementCinema::MyForm::getName(int i)
 	}
 }
 
-void ManagementCinema::MyForm::LoadDataGhe()
+void ManagementCinema::MyForm::LoadDanhSachPhim()
 {
 	Store^ s = gcnew Store();
-	s->GetAllPhims();
-	
-	for (int i = 0; i < 8; i++)
-	{
-		dtData->Columns->Add("" + i);
-	}
+	dt =s->GetAllPhims();
+}
 
-	for (int i = 0; i < 8; i++)
-	{
-		DataRow^ dr = dtData->NewRow();
-		for (int j = 0; j < 8; j++)
-		{
-			if (i % 2 == 0) {
-				dr[j] = 1;
-			}
-			else {
-				dr[j] = 0;
-			}
-			
-		}
-		dtData->Rows->Add(dr);
-	}
+bool ManagementCinema::MyForm::KiemTraPhimTonTai(String^ maPhim)
+{
+	Store^ s = gcnew Store();
+	return s->CheckPhimTonTai(maPhim);
+}
 
-	for (int i = 0; i < 8; i++) {
-		local[i] = gcnew array< Int32 >(8);
-		for (int j = 0; j < 8; j++)
-			local[i][j] = 1;
-	}
+bool ManagementCinema::MyForm::Them1Phim()
+{
+	Store^ s = gcnew Store();
+	return s->Them1Phim(txtMaPhim->Text,
+		txtTenPhim->Text,
+		txtNamSanXuat->Text,
+		txtThoiLuong->Text,
+		txtQuocGia->Text,
+		txtTheLoai->Text,
+		fileName);
+	return false;
+}
 
+void ManagementCinema::MyForm::LoadButton(bool bbtnThem, bool bbtnLuu, bool bbtnSua, bool bbtnXoa, bool bbtnHuy)
+{
+	btnThem->Enabled = bbtnThem;
+	btnLuu->Enabled = bbtnLuu;
+	btnSua->Enabled = bbtnSua;
+	btnXoa->Enabled = bbtnXoa;
+	btnHuy->Enabled = bbtnHuy;
 }
