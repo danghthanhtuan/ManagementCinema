@@ -24,9 +24,13 @@ namespace ManagementCinema {
 			//
 		}
 		String^ getName(int i);
+		void XoaText();
 		void LoadDanhSachPhim();
+		void LoadComboBoxQuocGia();
 		bool KiemTraPhimTonTai(String^ maPhim);
 		bool Them1Phim();
+		bool Sua1Phim();
+		bool Xoa1Phim(String^ maPhim);
 		void LoadButton(bool btnThem, bool btnLuu, bool btnSua, bool btnXoa, bool bbtnHuy);
 	protected:
 		/// <summary>
@@ -45,6 +49,9 @@ namespace ManagementCinema {
 	private: System::Windows::Forms::GroupBox^ groupBox1;
 	private: System::Windows::Forms::Panel^ panel3;
 	private: System::Windows::Forms::DataGridView^ dataGridView1;
+
+
+
 	private: System::Windows::Forms::Button^ btnThem;
 	private: System::Windows::Forms::Button^ btnSua;
 	private: System::Windows::Forms::Button^ btnXoa;
@@ -54,13 +61,13 @@ namespace ManagementCinema {
 	private: System::Windows::Forms::PictureBox^ pictureBox1;
 	private: System::Windows::Forms::Label^ label5;
 	private: System::Windows::Forms::Label^ label4;
-	private: System::Windows::Forms::TextBox^ txtQuocGia;
+
 	private: System::Windows::Forms::TextBox^ txtMaPhim;
 	private: System::Windows::Forms::TextBox^ txtThoiLuong;
 	private: System::Windows::Forms::TextBox^ txtNamSanXuat;
 	private: System::Windows::Forms::TextBox^ txtTenPhim;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TenPhim;
+
+
 	private: System::Windows::Forms::Button^ btnLuu;
 	private: System::Windows::Forms::Button^ btnHuy;
 	private: System::Windows::Forms::Label^ lableThaoTac;
@@ -68,6 +75,19 @@ namespace ManagementCinema {
 	private: System::Windows::Forms::Button^ btnChonHinh;
 	private: System::Windows::Forms::TextBox^ txtTheLoai;
 	private: System::Windows::Forms::Label^ The;
+	private: System::Windows::Forms::ComboBox^ comboBox1;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MaPhim;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TenPhim;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ThoiLuong;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TheLoai;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NamSanXuat;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ QuocGia;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ HinhAnh;
+
+
+
+
 
 
 	protected:
@@ -89,8 +109,10 @@ namespace ManagementCinema {
 		void InitializeComponent(void)
 		{
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
+			this->txtTheLoai = (gcnew System::Windows::Forms::TextBox());
+			this->The = (gcnew System::Windows::Forms::Label());
 			this->btnChonHinh = (gcnew System::Windows::Forms::Button());
-			this->txtQuocGia = (gcnew System::Windows::Forms::TextBox());
 			this->txtMaPhim = (gcnew System::Windows::Forms::TextBox());
 			this->txtThoiLuong = (gcnew System::Windows::Forms::TextBox());
 			this->txtNamSanXuat = (gcnew System::Windows::Forms::TextBox());
@@ -112,10 +134,14 @@ namespace ManagementCinema {
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
 			this->ID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->MaPhim = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->TenPhim = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->ThoiLuong = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->TheLoai = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->NamSanXuat = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->QuocGia = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->HinhAnh = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
-			this->txtTheLoai = (gcnew System::Windows::Forms::TextBox());
-			this->The = (gcnew System::Windows::Forms::Label());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->panel2->SuspendLayout();
@@ -126,10 +152,10 @@ namespace ManagementCinema {
 			// 
 			// panel1
 			// 
+			this->panel1->Controls->Add(this->comboBox1);
 			this->panel1->Controls->Add(this->txtTheLoai);
 			this->panel1->Controls->Add(this->The);
 			this->panel1->Controls->Add(this->btnChonHinh);
-			this->panel1->Controls->Add(this->txtQuocGia);
 			this->panel1->Controls->Add(this->txtMaPhim);
 			this->panel1->Controls->Add(this->txtThoiLuong);
 			this->panel1->Controls->Add(this->txtNamSanXuat);
@@ -146,6 +172,30 @@ namespace ManagementCinema {
 			this->panel1->Size = System::Drawing::Size(976, 238);
 			this->panel1->TabIndex = 0;
 			// 
+			// comboBox1
+			// 
+			this->comboBox1->FormattingEnabled = true;
+			this->comboBox1->Location = System::Drawing::Point(473, 117);
+			this->comboBox1->Name = L"comboBox1";
+			this->comboBox1->Size = System::Drawing::Size(307, 21);
+			this->comboBox1->TabIndex = 5;
+			// 
+			// txtTheLoai
+			// 
+			this->txtTheLoai->Location = System::Drawing::Point(473, 144);
+			this->txtTheLoai->Name = L"txtTheLoai";
+			this->txtTheLoai->Size = System::Drawing::Size(307, 20);
+			this->txtTheLoai->TabIndex = 6;
+			// 
+			// The
+			// 
+			this->The->AutoSize = true;
+			this->The->Location = System::Drawing::Point(378, 147);
+			this->The->Name = L"The";
+			this->The->Size = System::Drawing::Size(48, 13);
+			this->The->TabIndex = 12;
+			this->The->Text = L"Thể loại:";
+			// 
 			// btnChonHinh
 			// 
 			this->btnChonHinh->Location = System::Drawing::Point(473, 173);
@@ -156,40 +206,35 @@ namespace ManagementCinema {
 			this->btnChonHinh->UseVisualStyleBackColor = true;
 			this->btnChonHinh->Click += gcnew System::EventHandler(this, &MyForm::btnChonHinh_Click);
 			// 
-			// txtQuocGia
-			// 
-			this->txtQuocGia->Location = System::Drawing::Point(473, 118);
-			this->txtQuocGia->Name = L"txtQuocGia";
-			this->txtQuocGia->Size = System::Drawing::Size(307, 20);
-			this->txtQuocGia->TabIndex = 10;
-			// 
 			// txtMaPhim
 			// 
 			this->txtMaPhim->Location = System::Drawing::Point(473, 40);
 			this->txtMaPhim->Name = L"txtMaPhim";
 			this->txtMaPhim->Size = System::Drawing::Size(307, 20);
-			this->txtMaPhim->TabIndex = 9;
+			this->txtMaPhim->TabIndex = 2;
 			// 
 			// txtThoiLuong
 			// 
 			this->txtThoiLuong->Location = System::Drawing::Point(473, 66);
 			this->txtThoiLuong->Name = L"txtThoiLuong";
 			this->txtThoiLuong->Size = System::Drawing::Size(307, 20);
-			this->txtThoiLuong->TabIndex = 8;
+			this->txtThoiLuong->TabIndex = 3;
+			this->txtThoiLuong->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::txtThoiLuong_KeyPress);
 			// 
 			// txtNamSanXuat
 			// 
 			this->txtNamSanXuat->Location = System::Drawing::Point(473, 92);
 			this->txtNamSanXuat->Name = L"txtNamSanXuat";
 			this->txtNamSanXuat->Size = System::Drawing::Size(307, 20);
-			this->txtNamSanXuat->TabIndex = 7;
+			this->txtNamSanXuat->TabIndex = 4;
+			this->txtNamSanXuat->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::txtNamSanXuat_KeyPress);
 			// 
 			// txtTenPhim
 			// 
 			this->txtTenPhim->Location = System::Drawing::Point(473, 14);
 			this->txtTenPhim->Name = L"txtTenPhim";
 			this->txtTenPhim->Size = System::Drawing::Size(307, 20);
-			this->txtTenPhim->TabIndex = 6;
+			this->txtTenPhim->TabIndex = 1;
 			// 
 			// label5
 			// 
@@ -286,6 +331,7 @@ namespace ManagementCinema {
 			this->btnHuy->TabIndex = 4;
 			this->btnHuy->Text = L"Hủy thao tác";
 			this->btnHuy->UseVisualStyleBackColor = true;
+			this->btnHuy->Click += gcnew System::EventHandler(this, &MyForm::btnHuy_Click);
 			// 
 			// btnLuu
 			// 
@@ -305,6 +351,7 @@ namespace ManagementCinema {
 			this->btnXoa->TabIndex = 2;
 			this->btnXoa->Text = L"Xóa";
 			this->btnXoa->UseVisualStyleBackColor = true;
+			this->btnXoa->Click += gcnew System::EventHandler(this, &MyForm::btnXoa_Click);
 			// 
 			// btnSua
 			// 
@@ -314,6 +361,7 @@ namespace ManagementCinema {
 			this->btnSua->TabIndex = 1;
 			this->btnSua->Text = L"Sửa";
 			this->btnSua->UseVisualStyleBackColor = true;
+			this->btnSua->Click += gcnew System::EventHandler(this, &MyForm::btnSua_Click);
 			// 
 			// btnThem
 			// 
@@ -338,7 +386,10 @@ namespace ManagementCinema {
 			// 
 			this->dataGridView1->AllowUserToAddRows = false;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) { this->ID, this->TenPhim });
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+				this->ID, this->MaPhim,
+					this->TenPhim, this->ThoiLuong, this->TheLoai, this->NamSanXuat, this->QuocGia, this->HinhAnh
+			});
 			this->dataGridView1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->dataGridView1->Location = System::Drawing::Point(0, 0);
 			this->dataGridView1->Name = L"dataGridView1";
@@ -353,31 +404,57 @@ namespace ManagementCinema {
 			this->ID->Name = L"ID";
 			this->ID->ReadOnly = true;
 			// 
+			// MaPhim
+			// 
+			this->MaPhim->DataPropertyName = L"MaPhim";
+			this->MaPhim->HeaderText = L"Mã Phim";
+			this->MaPhim->Name = L"MaPhim";
+			this->MaPhim->ReadOnly = true;
+			// 
 			// TenPhim
 			// 
 			this->TenPhim->DataPropertyName = L"Ten";
 			this->TenPhim->HeaderText = L"Tên Phim";
 			this->TenPhim->Name = L"TenPhim";
 			// 
+			// ThoiLuong
+			// 
+			this->ThoiLuong->DataPropertyName = L"ThoiLuong";
+			this->ThoiLuong->HeaderText = L"Thời Lượng";
+			this->ThoiLuong->Name = L"ThoiLuong";
+			this->ThoiLuong->ReadOnly = true;
+			// 
+			// TheLoai
+			// 
+			this->TheLoai->DataPropertyName = L"TheLoai";
+			this->TheLoai->HeaderText = L"Thể Loại";
+			this->TheLoai->Name = L"TheLoai";
+			this->TheLoai->ReadOnly = true;
+			// 
+			// NamSanXuat
+			// 
+			this->NamSanXuat->DataPropertyName = L"NamSanXuat";
+			this->NamSanXuat->HeaderText = L"Năm Sản Xuất";
+			this->NamSanXuat->Name = L"NamSanXuat";
+			this->NamSanXuat->ReadOnly = true;
+			// 
+			// QuocGia
+			// 
+			this->QuocGia->DataPropertyName = L"QuocGia";
+			this->QuocGia->HeaderText = L"Quốc Gia";
+			this->QuocGia->Name = L"QuocGia";
+			this->QuocGia->ReadOnly = true;
+			// 
+			// HinhAnh
+			// 
+			this->HinhAnh->DataPropertyName = L"HinhAnh";
+			this->HinhAnh->HeaderText = L"Link Hình Ảnh";
+			this->HinhAnh->Name = L"HinhAnh";
+			this->HinhAnh->ReadOnly = true;
+			// 
 			// openFileDialog1
 			// 
 			this->openFileDialog1->FileName = L"openFileDialog1";
-			// 
-			// txtTheLoai
-			// 
-			this->txtTheLoai->Location = System::Drawing::Point(473, 144);
-			this->txtTheLoai->Name = L"txtTheLoai";
-			this->txtTheLoai->Size = System::Drawing::Size(307, 20);
-			this->txtTheLoai->TabIndex = 13;
-			// 
-			// The
-			// 
-			this->The->AutoSize = true;
-			this->The->Location = System::Drawing::Point(378, 147);
-			this->The->Name = L"The";
-			this->The->Size = System::Drawing::Size(48, 13);
-			this->The->TabIndex = 12;
-			this->The->Text = L"Thể loại:";
 			// 
 			// MyForm
 			// 
@@ -403,17 +480,18 @@ namespace ManagementCinema {
 		}
 
 		DataTable^ dt = gcnew DataTable();
-		DataTable^ dtData = gcnew DataTable();
-		//array<array<Int32>^>^ local = gcnew array<array< Int32 >^>(8);
-		int enumXuly = 0; // 1 Them, 2 Xoa, 3 Sua
+		int enumXuly = 0; // 1 Them,  2 Sua
 		String^ fileName = "";
 #pragma endregion
+		/// <summary>
+		/// Hàm này để load dữ liệu cần thiết trước khi form được hiện thị
+		/// </summary>
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->LoadDanhSachPhim();
+		this->LoadComboBoxQuocGia();
 		btnChonHinh->Enabled = false;
 		this->LoadButton(true, false, true, true, false);
 		dataGridView1->AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode::Fill;
-		dataGridView1->DataSource = dt;
 	}
 	private: System::Void dataGridView1_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
 		DataGridView^ senderGrid = (DataGridView^)sender;
@@ -427,14 +505,15 @@ namespace ManagementCinema {
 			txtNamSanXuat->Text = dr["NamSanXuat"]->ToString();
 			txtTenPhim->Text = dr["Ten"]->ToString();
 			txtThoiLuong->Text = dr["ThoiLuong"]->ToString();
-			txtQuocGia->Text = dr["QuocGia"]->ToString();
-			//if (File->Exists(fullImagePath))
+			comboBox1->Text = dr["QuocGia"]->ToString();
 			pictureBox1->Image = gcnew Bitmap(dr["HinhAnh"]->ToString());
+			fileName = dr["HinhAnh"]->ToString();
 		}
 	}
 
 	private: System::Void btnThem_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->LoadButton(false, true, false, false, true);
+		this->XoaText();
 		btnChonHinh->Enabled = true;
 		lableThaoTac->Text = "Thao tác thêm Phim";
 		enumXuly = 1;
@@ -454,24 +533,112 @@ namespace ManagementCinema {
 	}
 	private: System::Void btnLuu_Click(System::Object^ sender, System::EventArgs^ e) {
 		if (enumXuly == 1) {
-			if (txtMaPhim->Text == "" 
+			lableThaoTac->Text = "";
+
+			if (txtMaPhim->Text == ""
 				|| txtNamSanXuat->Text == ""
-				|| txtQuocGia-> Text == ""
+				|| comboBox1->Text == ""
 				|| txtTenPhim->Text == ""
 				|| txtThoiLuong->Text == ""
 				|| fileName == "")
 			{
 				MessageBox::Show(L"Bạn vui lòng nhập đầy đủ thông tin!", "Thông Báo");
 			}
-			
+
 			if (this->KiemTraPhimTonTai(txtMaPhim->Text)) {
 				MessageBox::Show(L"Mã phim đã tồn tại!", "Thông Báo");
 			}
-			bool result = Them1Phim();
-			if (result) {
-				LoadDanhSachPhim();
+			else {
+				bool result = Them1Phim();
+				if (result) {
+					LoadDanhSachPhim();
+				}
 			}
+			this->LoadButton(true, false, true, true, false);
+		}
 
+		if (enumXuly == 2)
+		{
+			lableThaoTac->Text = "";
+			if (txtMaPhim->Text == ""
+				|| txtNamSanXuat->Text == ""
+				|| comboBox1->Text == ""
+				|| txtTenPhim->Text == ""
+				|| txtThoiLuong->Text == ""
+				|| fileName == "")
+			{
+				MessageBox::Show(L"Bạn vui lòng nhập đầy đủ thông tin!", "Thông Báo");
+			}
+			if (this->KiemTraPhimTonTai(txtMaPhim->Text) == false) {
+				MessageBox::Show(L"Mã phim không đã tồn tại!", "Thông Báo");
+			}
+			else {
+				bool result = Sua1Phim();
+				if (result) {
+					LoadDanhSachPhim();
+				}
+			}
+			this->LoadButton(true, false, true, true, false);
+		}
+	}
+	private: System::Void btnHuy_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->LoadButton(true, false, true, true, false);
+		this->XoaText();
+		lableThaoTac->Text = "";
+		enumXuly = 0;
+	}
+	private: System::Void btnXoa_Click(System::Object^ sender, System::EventArgs^ e) {
+		if (txtMaPhim->Text == "") {
+			MessageBox::Show(L"Bạn vui lòng chọn phim để xóa!", "Thông Báo");
+			return;
+		}
+		else
+		{
+			bool phimTonTai = this->KiemTraPhimTonTai(txtMaPhim->Text);
+			if (phimTonTai == false) {
+				MessageBox::Show(L"Mã phim không tồn tại!", "Thông Báo");
+				return;
+			}
+		}
+
+		if ((MessageBox::Show(L"Bạn muốn xóa Phim này?", "Confirmation",
+			MessageBoxButtons::YesNo, MessageBoxIcon::Question)) == System::Windows::Forms::DialogResult::Yes)
+		{
+			bool xoa = this->Xoa1Phim(txtMaPhim->Text);
+			if (xoa) {
+				LoadDanhSachPhim();
+				XoaText();
+			}
+			else {
+				MessageBox::Show(L"Xóa không thành công!", "Thông Báo");
+			}
+		}
+	}
+	private: System::Void btnSua_Click(System::Object^ sender, System::EventArgs^ e) {
+		lableThaoTac->Text = L"Thao tác sửa Phim";
+		enumXuly = 2;
+		this->LoadButton(false, true, false, false, true);
+	}
+
+	private: System::Void txtNamSanXuat_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		//if (e->KeyChar == '.') {
+		//	if (this->txtNamSanXuat->Text->Contains(".") && !this->txtNamSanXuat->SelectedText->Contains("."))
+		//		e->Handled = true;
+		//}
+		//// Allow negative numbers
+		//else if (e->KeyChar == '-' && !(this->txtNamSanXuat->Text->Contains("-"))) {
+		//	e->Handled = true;
+		//	txtNamSanXuat->Text = "-" + txtNamSanXuat->Text;
+		//}
+		// Accept only digits ".", "-" and the Backspace character
+		//else 
+		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 0x08) {
+			e->Handled = true;
+		}
+	}
+	private: System::Void txtThoiLuong_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
+		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 0x08) {
+			e->Handled = true;
 		}
 	}
 	};

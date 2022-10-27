@@ -1,4 +1,4 @@
-#include "MyForm.h"
+﻿#include "MyForm.h"
 #include "Store.h"
 
 using namespace System;
@@ -30,10 +30,30 @@ String^ ManagementCinema::MyForm::getName(int i)
 	}
 }
 
+void ManagementCinema::MyForm::XoaText()
+{
+	txtMaPhim->Text = "";
+	txtNamSanXuat->Text = "";
+	txtTheLoai->Text = "";
+	txtThoiLuong->Text = "";
+	comboBox1->Text = "";
+	txtTenPhim->Text = "";
+	fileName = "";
+}
+
 void ManagementCinema::MyForm::LoadDanhSachPhim()
 {
 	Store^ s = gcnew Store();
 	dt =s->GetAllPhims();
+	dataGridView1->DataSource = dt;
+}
+
+void ManagementCinema::MyForm::LoadComboBoxQuocGia()
+{
+	comboBox1->Items->Add(L"Việt Nam");
+	comboBox1->Items->Add(L"Mỹ");
+	comboBox1->Items->Add("Trung");
+	comboBox1->Items->Add(L"Thái");
 }
 
 bool ManagementCinema::MyForm::KiemTraPhimTonTai(String^ maPhim)
@@ -49,10 +69,27 @@ bool ManagementCinema::MyForm::Them1Phim()
 		txtTenPhim->Text,
 		txtNamSanXuat->Text,
 		txtThoiLuong->Text,
-		txtQuocGia->Text,
+		comboBox1->Text,
 		txtTheLoai->Text,
 		fileName);
-	return false;
+}
+
+bool ManagementCinema::MyForm::Sua1Phim()
+{
+	Store^ s = gcnew Store();
+	return s->Sua1Phim(txtMaPhim->Text,
+		txtTenPhim->Text,
+		txtNamSanXuat->Text,
+		txtThoiLuong->Text,
+		comboBox1->Text,
+		txtTheLoai->Text,
+		fileName);
+}
+
+bool ManagementCinema::MyForm::Xoa1Phim(String^ maPhim)
+{
+	Store^ s = gcnew Store();
+	return s->Xoa1Phim(maPhim);
 }
 
 void ManagementCinema::MyForm::LoadButton(bool bbtnThem, bool bbtnLuu, bool bbtnSua, bool bbtnXoa, bool bbtnHuy)

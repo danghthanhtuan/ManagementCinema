@@ -47,6 +47,18 @@ bool Store::CheckPhimTonTai(String^ maPhim)
 	return false;
 }
 
+bool Store::Xoa1Phim(String^ maPhim)
+{
+	OleDbConnection^ conn = ConnectionAccess();
+	OleDbCommand^ cmd = conn->CreateCommand();
+	cmd->CommandType = CommandType::Text;
+	cmd->CommandText = "DELETE * FROM Phim WHERE MaPhim ='" + maPhim->Trim() + "';";
+
+	bool resutl = cmd->ExecuteNonQuery();
+	CloseAccess(conn);
+	return resutl;
+}
+
 bool Store::Them1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ quocgia, String^ theloai, String^ hinhanh)
 {
 	OleDbConnection^ conn = ConnectionAccess();
@@ -54,8 +66,28 @@ bool Store::Them1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluon
 	cmd->CommandType = CommandType::Text;
 	cmd->CommandText = "INSERT INTO Phim (Ten,ThoiLuong,NamSanXuat,QuocGia,TheLoai,HinhAnh,MaPhim)"
 		+ "VALUES ('" + ten + "', '" + thoiluong + "', '" + nam + "', '" + quocgia + "', '" + theloai + "', '" + hinhanh + "', '" + maPhim + "')";
-	
+
+	bool resutl = cmd->ExecuteNonQuery();
 	CloseAccess(conn);
-	return cmd->ExecuteNonQuery();
+	return resutl;
 }
+
+bool Store::Sua1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ quocgia, String^ theloai, String^ hinhanh)
+{
+	OleDbConnection^ conn = ConnectionAccess();
+	OleDbCommand^ cmd = conn->CreateCommand();
+	cmd->CommandType = CommandType::Text;
+	cmd->CommandText = "UPDATE Phim SET " +
+		"Ten = '" + ten + "'," +
+		"ThoiLuong = '" + thoiluong + "'," +
+		"NamSanXuat = '" + nam + "'," +
+		"QuocGia = '" + quocgia + "'," +
+		"TheLoai = '" + theloai + "'," +
+		"HinhAnh = '" + hinhanh  +"'"
+		"WHERE MaPhim = '" + maPhim->Trim() + "'; ";
+	bool resutl = cmd->ExecuteNonQuery();
+	CloseAccess(conn);
+	return resutl;
+}
+
 
