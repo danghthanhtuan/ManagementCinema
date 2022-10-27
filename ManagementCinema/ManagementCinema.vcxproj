@@ -120,20 +120,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Main.cpp" />
     <ClCompile Include="Phim.cpp" />
+    <ClCompile Include="QuanLyLichChieu.cpp" />
     <ClCompile Include="Store.cpp" />
-    <ClCompile Include="MyForm.cpp" />
+    <ClCompile Include="QuanLyPhim.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Main.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Phim.h" />
+    <ClInclude Include="QuanLyLichChieu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="Store.h" />
-    <ClInclude Include="MyForm.h">
+    <ClInclude Include="QuanLyPhim.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="MyForm.resx">
-      <DependentUpon>MyForm.h</DependentUpon>
+    <EmbeddedResource Include="Main.resx">
+      <DependentUpon>Main.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanLyPhim.resx">
+      <DependentUpon>QuanLyPhim.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="QuanLyLichChieu.resx">
+      <DependentUpon>QuanLyLichChieu.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

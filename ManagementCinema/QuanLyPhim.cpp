@@ -1,19 +1,7 @@
-﻿#include "MyForm.h"
+﻿#include "QuanLyPhim.h"
 #include "Store.h"
 
-using namespace System;
-using namespace System::Windows::Forms;
-
-[STAThreadAttribute]
-void Main(array<String^>^ args) {
-	Application::EnableVisualStyles();
-	Application::SetCompatibleTextRenderingDefault(false);
-	//WinformCDemo is your project name
-	ManagementCinema::MyForm form;
-	Application::Run(% form);
-}
-
-String^ ManagementCinema::MyForm::getName(int i)
+String^ ManagementCinema::QuanLyPhim::getName(int i)
 {
 	switch (i)
 	{
@@ -30,7 +18,7 @@ String^ ManagementCinema::MyForm::getName(int i)
 	}
 }
 
-void ManagementCinema::MyForm::XoaText()
+void ManagementCinema::QuanLyPhim::XoaText()
 {
 	txtMaPhim->Text = "";
 	txtNamSanXuat->Text = "";
@@ -41,14 +29,14 @@ void ManagementCinema::MyForm::XoaText()
 	fileName = "";
 }
 
-void ManagementCinema::MyForm::LoadDanhSachPhim()
+void ManagementCinema::QuanLyPhim::LoadDanhSachPhim()
 {
 	Store^ s = gcnew Store();
-	dt =s->GetAllPhims();
+	dt =s->GetAllPhims("");
 	dataGridView1->DataSource = dt;
 }
 
-void ManagementCinema::MyForm::LoadComboBoxQuocGia()
+void ManagementCinema::QuanLyPhim::LoadComboBoxQuocGia()
 {
 	comboBox1->Items->Add(L"Việt Nam");
 	comboBox1->Items->Add(L"Mỹ");
@@ -56,13 +44,13 @@ void ManagementCinema::MyForm::LoadComboBoxQuocGia()
 	comboBox1->Items->Add(L"Thái");
 }
 
-bool ManagementCinema::MyForm::KiemTraPhimTonTai(String^ maPhim)
+bool ManagementCinema::QuanLyPhim::KiemTraPhimTonTai(String^ maPhim)
 {
 	Store^ s = gcnew Store();
 	return s->CheckPhimTonTai(maPhim);
 }
 
-bool ManagementCinema::MyForm::Them1Phim()
+bool ManagementCinema::QuanLyPhim::Them1Phim()
 {
 	Store^ s = gcnew Store();
 	return s->Them1Phim(txtMaPhim->Text,
@@ -74,7 +62,7 @@ bool ManagementCinema::MyForm::Them1Phim()
 		fileName);
 }
 
-bool ManagementCinema::MyForm::Sua1Phim()
+bool ManagementCinema::QuanLyPhim::Sua1Phim()
 {
 	Store^ s = gcnew Store();
 	return s->Sua1Phim(txtMaPhim->Text,
@@ -86,13 +74,13 @@ bool ManagementCinema::MyForm::Sua1Phim()
 		fileName);
 }
 
-bool ManagementCinema::MyForm::Xoa1Phim(String^ maPhim)
+bool ManagementCinema::QuanLyPhim::Xoa1Phim(String^ maPhim)
 {
 	Store^ s = gcnew Store();
 	return s->Xoa1Phim(maPhim);
 }
 
-void ManagementCinema::MyForm::LoadButton(bool bbtnThem, bool bbtnLuu, bool bbtnSua, bool bbtnXoa, bool bbtnHuy)
+void ManagementCinema::QuanLyPhim::LoadButton(bool bbtnThem, bool bbtnLuu, bool bbtnSua, bool bbtnXoa, bool bbtnHuy)
 {
 	btnThem->Enabled = bbtnThem;
 	btnLuu->Enabled = bbtnLuu;

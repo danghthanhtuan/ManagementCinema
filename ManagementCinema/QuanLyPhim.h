@@ -13,10 +13,10 @@ namespace ManagementCinema {
 	/// <summary>
 	/// Summary for MyForm
 	/// </summary>
-	public ref class MyForm : public System::Windows::Forms::Form
+	public ref class QuanLyPhim : public System::Windows::Forms::Form
 	{
 	public:
-		MyForm(void)
+		QuanLyPhim(void)
 		{
 			InitializeComponent();
 			//
@@ -36,7 +36,7 @@ namespace ManagementCinema {
 		/// <summary>
 		/// Clean up any resources being used.
 		/// </summary>
-		~MyForm()
+		~QuanLyPhim()
 		{
 			if (components)
 			{
@@ -204,7 +204,7 @@ namespace ManagementCinema {
 			this->btnChonHinh->TabIndex = 11;
 			this->btnChonHinh->Text = L"Hình Ảnh";
 			this->btnChonHinh->UseVisualStyleBackColor = true;
-			this->btnChonHinh->Click += gcnew System::EventHandler(this, &MyForm::btnChonHinh_Click);
+			this->btnChonHinh->Click += gcnew System::EventHandler(this, &QuanLyPhim::btnChonHinh_Click);
 			// 
 			// txtMaPhim
 			// 
@@ -219,7 +219,7 @@ namespace ManagementCinema {
 			this->txtThoiLuong->Name = L"txtThoiLuong";
 			this->txtThoiLuong->Size = System::Drawing::Size(307, 20);
 			this->txtThoiLuong->TabIndex = 3;
-			this->txtThoiLuong->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::txtThoiLuong_KeyPress);
+			this->txtThoiLuong->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &QuanLyPhim::txtThoiLuong_KeyPress);
 			// 
 			// txtNamSanXuat
 			// 
@@ -227,7 +227,7 @@ namespace ManagementCinema {
 			this->txtNamSanXuat->Name = L"txtNamSanXuat";
 			this->txtNamSanXuat->Size = System::Drawing::Size(307, 20);
 			this->txtNamSanXuat->TabIndex = 4;
-			this->txtNamSanXuat->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &MyForm::txtNamSanXuat_KeyPress);
+			this->txtNamSanXuat->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &QuanLyPhim::txtNamSanXuat_KeyPress);
 			// 
 			// txtTenPhim
 			// 
@@ -331,7 +331,7 @@ namespace ManagementCinema {
 			this->btnHuy->TabIndex = 4;
 			this->btnHuy->Text = L"Hủy thao tác";
 			this->btnHuy->UseVisualStyleBackColor = true;
-			this->btnHuy->Click += gcnew System::EventHandler(this, &MyForm::btnHuy_Click);
+			this->btnHuy->Click += gcnew System::EventHandler(this, &QuanLyPhim::btnHuy_Click);
 			// 
 			// btnLuu
 			// 
@@ -341,37 +341,37 @@ namespace ManagementCinema {
 			this->btnLuu->TabIndex = 3;
 			this->btnLuu->Text = L"Lưu";
 			this->btnLuu->UseVisualStyleBackColor = true;
-			this->btnLuu->Click += gcnew System::EventHandler(this, &MyForm::btnLuu_Click);
+			this->btnLuu->Click += gcnew System::EventHandler(this, &QuanLyPhim::btnLuu_Click);
 			// 
 			// btnXoa
 			// 
-			this->btnXoa->Location = System::Drawing::Point(574, 28);
+			this->btnXoa->Location = System::Drawing::Point(591, 28);
 			this->btnXoa->Name = L"btnXoa";
 			this->btnXoa->Size = System::Drawing::Size(95, 27);
 			this->btnXoa->TabIndex = 2;
 			this->btnXoa->Text = L"Xóa";
 			this->btnXoa->UseVisualStyleBackColor = true;
-			this->btnXoa->Click += gcnew System::EventHandler(this, &MyForm::btnXoa_Click);
+			this->btnXoa->Click += gcnew System::EventHandler(this, &QuanLyPhim::btnXoa_Click);
 			// 
 			// btnSua
 			// 
-			this->btnSua->Location = System::Drawing::Point(445, 28);
+			this->btnSua->Location = System::Drawing::Point(462, 28);
 			this->btnSua->Name = L"btnSua";
 			this->btnSua->Size = System::Drawing::Size(95, 27);
 			this->btnSua->TabIndex = 1;
 			this->btnSua->Text = L"Sửa";
 			this->btnSua->UseVisualStyleBackColor = true;
-			this->btnSua->Click += gcnew System::EventHandler(this, &MyForm::btnSua_Click);
+			this->btnSua->Click += gcnew System::EventHandler(this, &QuanLyPhim::btnSua_Click);
 			// 
 			// btnThem
 			// 
-			this->btnThem->Location = System::Drawing::Point(309, 28);
+			this->btnThem->Location = System::Drawing::Point(326, 28);
 			this->btnThem->Name = L"btnThem";
 			this->btnThem->Size = System::Drawing::Size(95, 27);
 			this->btnThem->TabIndex = 0;
 			this->btnThem->Text = L"Thêm phim";
 			this->btnThem->UseVisualStyleBackColor = true;
-			this->btnThem->Click += gcnew System::EventHandler(this, &MyForm::btnThem_Click);
+			this->btnThem->Click += gcnew System::EventHandler(this, &QuanLyPhim::btnThem_Click);
 			// 
 			// panel3
 			// 
@@ -395,7 +395,7 @@ namespace ManagementCinema {
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->Size = System::Drawing::Size(976, 262);
 			this->dataGridView1->TabIndex = 0;
-			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &MyForm::dataGridView1_CellClick);
+			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &QuanLyPhim::dataGridView1_CellClick);
 			// 
 			// ID
 			// 
@@ -456,7 +456,7 @@ namespace ManagementCinema {
 			// 
 			this->openFileDialog1->FileName = L"openFileDialog1";
 			// 
-			// MyForm
+			// QuanLyPhim
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
@@ -464,9 +464,10 @@ namespace ManagementCinema {
 			this->Controls->Add(this->panel3);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
-			this->Name = L"MyForm";
+			this->Name = L"QuanLyPhim";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm";
-			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
+			this->Load += gcnew System::EventHandler(this, &QuanLyPhim::QuanLyPhim_Load);
 			this->panel1->ResumeLayout(false);
 			this->panel1->PerformLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->EndInit();
@@ -486,7 +487,7 @@ namespace ManagementCinema {
 		/// <summary>
 		/// Hàm này để load dữ liệu cần thiết trước khi form được hiện thị
 		/// </summary>
-	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
+	private: System::Void QuanLyPhim_Load(System::Object^ sender, System::EventArgs^ e) {
 		this->LoadDanhSachPhim();
 		this->LoadComboBoxQuocGia();
 		btnChonHinh->Enabled = false;
@@ -636,6 +637,10 @@ namespace ManagementCinema {
 			e->Handled = true;
 		}
 	}
+
+	/// <summary>
+	/// Chỉ cho nhập số cho text box này
+	/// </summary>
 	private: System::Void txtThoiLuong_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 0x08) {
 			e->Handled = true;

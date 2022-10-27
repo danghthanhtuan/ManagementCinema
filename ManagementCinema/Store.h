@@ -9,8 +9,11 @@ public:
 	{}
 	OleDbConnection^ ConnectionAccess();
 	void CloseAccess(OleDbConnection^ conn);
-	DataTable^ GetAllPhims();
+	DataTable^ GetAllPhims(String^ timkiemTen);
+	DataTable^ LoadDanhSachLichChieu(String^ maPhim);
+	DataTable^ LoadListRapPhim(String^ maRap);
 	bool CheckPhimTonTai(String^ maPhim);
+	bool KiemTraLichChieuTonTai(DateTime batdau,DateTime ketthuc, String^ maRap);
 	bool Xoa1Phim(String^ maPhim);
 	bool Them1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ quocgia, String^ theloai, String^ hinhanh);
 	bool Sua1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ quocgia, String^ theloai, String^ hinhanh);

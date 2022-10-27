@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="MyForm.cpp">
+    <ClCompile Include="QuanLyPhim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Store.cpp">
@@ -24,15 +24,27 @@
     <ClCompile Include="Phim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="QuanLyLichChieu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MyForm.h">
+    <ClInclude Include="QuanLyPhim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Store.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Phim.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="QuanLyLichChieu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
