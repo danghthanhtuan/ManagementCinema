@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "QuanLyPhim.h"
 #include "QuanLyLichChieu.h"
+#include "DangKyVe.h"
 
 namespace ManagementCinema {
 
@@ -39,6 +40,7 @@ namespace ManagementCinema {
 	private: System::Windows::Forms::Button^ btnQuanLyPhim;
 	protected:
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Button^ btnDangKyVe;
 
 	private:
 		/// <summary>
@@ -56,6 +58,7 @@ namespace ManagementCinema {
 			System::ComponentModel::ComponentResourceManager^ resources = (gcnew System::ComponentModel::ComponentResourceManager(Main::typeid));
 			this->btnQuanLyPhim = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->btnDangKyVe = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// btnQuanLyPhim
@@ -78,6 +81,16 @@ namespace ManagementCinema {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &Main::button2_Click);
 			// 
+			// btnDangKyVe
+			// 
+			this->btnDangKyVe->Location = System::Drawing::Point(412, 190);
+			this->btnDangKyVe->Name = L"btnDangKyVe";
+			this->btnDangKyVe->Size = System::Drawing::Size(125, 35);
+			this->btnDangKyVe->TabIndex = 2;
+			this->btnDangKyVe->Text = L"Đăng ký vé";
+			this->btnDangKyVe->UseVisualStyleBackColor = true;
+			this->btnDangKyVe->Click += gcnew System::EventHandler(this, &Main::btnDangKyVe_Click);
+			// 
 			// Main
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
@@ -85,6 +98,7 @@ namespace ManagementCinema {
 			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->ClientSize = System::Drawing::Size(692, 453);
+			this->Controls->Add(this->btnDangKyVe);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->btnQuanLyPhim);
 			this->Cursor = System::Windows::Forms::Cursors::Hand;
@@ -103,5 +117,9 @@ namespace ManagementCinema {
 		QuanLyLichChieu^ frm = gcnew QuanLyLichChieu();
 		frm->ShowDialog();
 	}
-	};
+	private: System::Void btnDangKyVe_Click(System::Object^ sender, System::EventArgs^ e) {
+		DangKyVe^ frm = gcnew DangKyVe();
+		frm->ShowDialog();
+	}
+};
 }

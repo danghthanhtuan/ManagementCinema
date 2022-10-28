@@ -31,3 +31,30 @@ bool ManagementCinema::QuanLyLichChieu::KiemTraLichChieu()
 	bool result = s->KiemTraLichChieuTonTai(datePickBatDau->Value, datePickKetThuc->Value,comboRapPhim->Text);
 	return result;
 }
+
+bool ManagementCinema::QuanLyLichChieu::ThemLichPhim()
+{
+	Store^ s = gcnew Store();
+	DateTime^ batdau = gcnew DateTime(
+		datePickNgayChieu->Value.Year,
+		datePickNgayChieu->Value.Month,
+		datePickNgayChieu->Value.Day,
+		datePickBatDau->Value.Hour,
+		datePickBatDau->Value.Minute,
+		datePickBatDau->Value.Second);
+	DateTime^ ketthuc = gcnew DateTime(
+		datePickNgayChieu->Value.Year,
+		datePickNgayChieu->Value.Month,
+		datePickNgayChieu->Value.Day,
+		datePickKetThuc->Value.Hour,
+		datePickKetThuc->Value.Minute,
+		datePickKetThuc->Value.Second);
+	bool result = s->Them1LichPhim(txtMaPhim->Text,
+		comboRapPhim->Text,
+		txtGiaVe->Text,
+		datePickNgayChieu->Value,
+		batdau,
+		ketthuc);
+	return result;
+
+}
