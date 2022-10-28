@@ -57,6 +57,7 @@ bool ManagementCinema::QuanLyPhim::Them1Phim()
 		txtTenPhim->Text,
 		txtNamSanXuat->Text,
 		txtThoiLuong->Text,
+		txtDienVien->Text,
 		comboBox1->Text,
 		txtTheLoai->Text,
 		fileName);
@@ -69,6 +70,7 @@ bool ManagementCinema::QuanLyPhim::Sua1Phim()
 		txtTenPhim->Text,
 		txtNamSanXuat->Text,
 		txtThoiLuong->Text,
+		txtDienVien->Text,
 		comboBox1->Text,
 		txtTheLoai->Text,
 		fileName);

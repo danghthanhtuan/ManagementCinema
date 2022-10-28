@@ -15,8 +15,8 @@ public:
 	bool CheckPhimTonTai(String^ maPhim);
 	bool KiemTraLichChieuTonTai(DateTime batdau,DateTime ketthuc, String^ maRap);
 	bool Xoa1Phim(String^ maPhim);
-	bool Them1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ quocgia, String^ theloai, String^ hinhanh);
-	bool Sua1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ quocgia, String^ theloai, String^ hinhanh);
+	bool Them1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ dienvien, String^ quocgia, String^ theloai, String^ hinhanh);
+	bool Sua1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ dienvien, String^ quocgia, String^ theloai, String^ hinhanh);
 protected:
 	/// <summary>
 	/// Clean up any resources being used.

@@ -1,7 +1,7 @@
 #include "Store.h"
 OleDbConnection^ Store::ConnectionAccess()
 {
-	String^ DBPath = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\\MyProject2\\Winf\\ManagementCinema\\ManagementCinema\\QLPhim.accdb;Persist Security Info=False;";
+	String^ DBPath = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\\BTLOOP\\ManagementCinema\\ManagementCinema\\QLPhim.accdb;Persist Security Info=False;";
 	OleDbConnection^ conn = gcnew OleDbConnection(DBPath);
 	conn->Open();
 	return conn;
@@ -46,7 +46,7 @@ DataTable^ Store::LoadDanhSachLichChieu(String^ maPhim)
 	OleDbDataAdapter^ adapter = gcnew OleDbDataAdapter(cmd);
 
 	adapter->Fill(results);
-
+	
 	CloseAccess(conn);
 	return results;
 }
@@ -127,7 +127,7 @@ bool Store::Xoa1Phim(String^ maPhim)
 	return resutl;
 }
 
-bool Store::Them1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ quocgia, String^ theloai, String^ hinhanh)
+bool Store::Them1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ dienvien, String^ quocgia, String^ theloai, String^ hinhanh)
 {
 	OleDbConnection^ conn = ConnectionAccess();
 	OleDbCommand^ cmd = conn->CreateCommand();
@@ -140,7 +140,7 @@ bool Store::Them1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluon
 	return resutl;
 }
 
-bool Store::Sua1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ quocgia, String^ theloai, String^ hinhanh)
+bool Store::Sua1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong, String^ dienvien, String^ quocgia, String^ theloai, String^ hinhanh)
 {
 	OleDbConnection^ conn = ConnectionAccess();
 	OleDbCommand^ cmd = conn->CreateCommand();
@@ -151,6 +151,7 @@ bool Store::Sua1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong
 		"NamSanXuat = '" + nam + "'," +
 		"QuocGia = '" + quocgia + "'," +
 		"TheLoai = '" + theloai + "'," +
+		"DienVien = '" + dienvien + "'," +
 		"HinhAnh = '" + hinhanh + "'"
 		"WHERE MaPhim = '" + maPhim->Trim() + "'; ";
 	bool resutl = cmd->ExecuteNonQuery();
