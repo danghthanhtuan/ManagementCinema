@@ -33,6 +33,26 @@ DataTable^ Store::Store::GetAllPhims(String^ timkiemTen)
 	return results;
 }
 
+DataTable^ Store::Store::GetPhimCoLichChieu()
+{
+	OleDbConnection^ conn = ConnectionAccess();
+	DataTable^ results = gcnew DataTable();
+	OleDbCommand^ cmd = conn->CreateCommand();
+	cmd->CommandType = CommandType::Text;
+	String^ query = "SELECT DISTINCT Phim.MaPhim, Phim.Ten "
+		+"FROM Phim, LichPhim "
+		+"WHERE Phim.MaPhim = LichPhim.MaPhim AND LichPhim.NgayChieu >= #" + DateTime::Now.ToShortDateString() + "#";
+
+	cmd->CommandText = query;
+	cmd->ExecuteNonQuery();
+	OleDbDataAdapter^ adapter = gcnew OleDbDataAdapter(cmd);
+
+	adapter->Fill(results);
+
+	CloseAccess(conn);
+	return results;
+}
+
 DataTable^ Store::LoadDanhSachLichChieu(String^ maPhim)
 {
 	OleDbConnection^ conn = ConnectionAccess();
@@ -40,6 +60,24 @@ DataTable^ Store::LoadDanhSachLichChieu(String^ maPhim)
 	OleDbCommand^ cmd = conn->CreateCommand();
 	cmd->CommandType = CommandType::Text;
 	String^ query = "SELECT * FROM LichPhim WHERE MaPhim ='" + maPhim + "'";
+
+	cmd->CommandText = query;
+	cmd->ExecuteNonQuery();
+	OleDbDataAdapter^ adapter = gcnew OleDbDataAdapter(cmd);
+
+	adapter->Fill(results);
+
+	CloseAccess(conn);
+	return results;
+}
+
+DataTable^ Store::LoadDanhSachLichChieuTuongLai(String^ maPhim)
+{
+	OleDbConnection^ conn = ConnectionAccess();
+	DataTable^ results = gcnew DataTable();
+	OleDbCommand^ cmd = conn->CreateCommand();
+	cmd->CommandType = CommandType::Text;
+	String^ query = "SELECT * FROM LichPhim WHERE NgayChieu  >= #" + DateTime::Now.ToShortDateString() + "# and MaPhim ='" + maPhim + "'";
 
 	cmd->CommandText = query;
 	cmd->ExecuteNonQuery();
@@ -153,6 +191,19 @@ bool Store::Sua1Phim(String^ maPhim, String^ ten, String^ nam, String^ thoiluong
 		"TheLoai = '" + theloai + "'," +
 		"HinhAnh = '" + hinhanh + "'"
 		"WHERE MaPhim = '" + maPhim->Trim() + "'; ";
+	bool resutl = cmd->ExecuteNonQuery();
+	CloseAccess(conn);
+	return resutl;
+}
+
+bool Store::Them1LichPhim(String^ maPhim, String^ rapPhim, String^ giaVe, DateTime^ ngay, DateTime^ gioBatdau, DateTime^ gioKetThuc)
+{
+	OleDbConnection^ conn = ConnectionAccess();
+	OleDbCommand^ cmd = conn->CreateCommand();
+	cmd->CommandType = CommandType::Text;
+	cmd->CommandText = "INSERT INTO LichPhim (MaPhim,NgayChieu,RapPhim,GioBatDau,GioKetThuc,GiaVe)"
+		+ "VALUES ('" + maPhim + "', '" + ngay + "', '" + rapPhim + "', '" + gioBatdau + "', '" + gioKetThuc + "', " + giaVe + ")";
+
 	bool resutl = cmd->ExecuteNonQuery();
 	CloseAccess(conn);
 	return resutl;
