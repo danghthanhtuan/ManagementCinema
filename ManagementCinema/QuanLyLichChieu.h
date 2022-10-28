@@ -26,6 +26,8 @@ namespace ManagementCinema {
 		void LoadDanhSachLichChieu(String^ maPhim);
 		void LoadDanhSachRapPhim(String^ maRap);
 		bool KiemTraLichChieu();
+		bool ThemLichPhim();
+		
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -55,7 +57,7 @@ namespace ManagementCinema {
 	private: System::Windows::Forms::Panel^ panel4;
 	private: System::Windows::Forms::GroupBox^ groupBox2;
 	private: System::Windows::Forms::DataGridView^ dataGvLich;
-	private: System::Windows::Forms::DataGridViewTextBoxColumn^ IDLich;
+
 	private: System::Windows::Forms::TextBox^ txtGiaVe;
 
 	private: System::Windows::Forms::Label^ label7;
@@ -87,6 +89,8 @@ namespace ManagementCinema {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TheLoai;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ QuocGia;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ThoiLuong;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ IDLich;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NgayChieu;
 
 
 
@@ -138,6 +142,7 @@ namespace ManagementCinema {
 			this->groupBox2 = (gcnew System::Windows::Forms::GroupBox());
 			this->dataGvLich = (gcnew System::Windows::Forms::DataGridView());
 			this->IDLich = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->NgayChieu = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->panel1->SuspendLayout();
 			this->groupBox3->SuspendLayout();
 			this->panel2->SuspendLayout();
@@ -444,7 +449,7 @@ namespace ManagementCinema {
 			// 
 			this->dataGvLich->AllowUserToAddRows = false;
 			this->dataGvLich->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGvLich->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(1) { this->IDLich });
+			this->dataGvLich->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(2) { this->IDLich, this->NgayChieu });
 			this->dataGvLich->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->dataGvLich->Location = System::Drawing::Point(3, 16);
 			this->dataGvLich->Name = L"dataGvLich";
@@ -458,6 +463,13 @@ namespace ManagementCinema {
 			this->IDLich->Name = L"IDLich";
 			this->IDLich->ReadOnly = true;
 			this->IDLich->Visible = false;
+			// 
+			// NgayChieu
+			// 
+			this->NgayChieu->DataPropertyName = L"NgayChieu";
+			this->NgayChieu->HeaderText = L"Ngày chiếu";
+			this->NgayChieu->Name = L"NgayChieu";
+			this->NgayChieu->ReadOnly = true;
 			// 
 			// QuanLyLichChieu
 			// 
@@ -548,6 +560,8 @@ namespace ManagementCinema {
 			return;
 		}
 
+		this->ThemLichPhim();
+
 	}
 	private: System::Void txtGiaVe_KeyPress(System::Object^ sender, System::Windows::Forms::KeyPressEventArgs^ e) {
 		if (!Char::IsDigit(e->KeyChar) && e->KeyChar != 0x08) {
@@ -555,7 +569,7 @@ namespace ManagementCinema {
 		}
 	}
 	private: System::Void txtGiaVe_TextChanged(System::Object^ sender, System::EventArgs^ e) {
-		txtGiaVe->Text = String::Format("{0:#,##0}", double::Parse(txtGiaVe->Text));
+		//txtGiaVe->Text = String::Format("{0:#,##0}", double::Parse(txtGiaVe->Text));
 	}
 };
 }
