@@ -8,7 +8,7 @@ void Main(array<String^>^ args) {
 	Application::EnableVisualStyles();
 	Application::SetCompatibleTextRenderingDefault(false);
 	//WinformCDemo is your project name
-	ManagementCinema::Main form;
+	ManagementCinema::DangKyVe form;
 	
 	Application::Run(% form);
 }

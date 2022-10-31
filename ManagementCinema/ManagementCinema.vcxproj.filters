@@ -33,6 +33,9 @@
     <ClCompile Include="DangKyVe.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RapPhim1.cpp">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QuanLyPhim.h">
@@ -51,6 +54,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="DangKyVe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RapPhim1.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -127,6 +127,7 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Phim.cpp" />
     <ClCompile Include="QuanLyLichChieu.cpp" />
+    <ClCompile Include="RapPhim1.cpp" />
     <ClCompile Include="Store.cpp" />
     <ClCompile Include="QuanLyPhim.cpp" />
   </ItemGroup>
@@ -139,6 +140,9 @@
     </ClInclude>
     <ClInclude Include="Phim.h" />
     <ClInclude Include="QuanLyLichChieu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="RapPhim1.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="Store.h" />
@@ -158,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="QuanLyLichChieu.resx">
       <DependentUpon>QuanLyLichChieu.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RapPhim1.resx">
+      <DependentUpon>RapPhim1.h</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

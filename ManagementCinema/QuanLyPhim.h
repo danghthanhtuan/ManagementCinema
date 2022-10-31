@@ -76,6 +76,16 @@ namespace ManagementCinema {
 	private: System::Windows::Forms::TextBox^ txtTheLoai;
 	private: System::Windows::Forms::Label^ The;
 	private: System::Windows::Forms::ComboBox^ comboBox1;
+
+
+
+
+
+
+
+
+	private: System::Windows::Forms::Label^ label6;
+	private: System::Windows::Forms::TextBox^ txtDienVien;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ ID;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ MaPhim;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ TenPhim;
@@ -84,8 +94,17 @@ namespace ManagementCinema {
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ NamSanXuat;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ QuocGia;
 	private: System::Windows::Forms::DataGridViewTextBoxColumn^ HinhAnh;
-	private: System::Windows::Forms::Label^ label6;
-	private: System::Windows::Forms::TextBox^ txtDienVien;
+	private: System::Windows::Forms::DataGridViewTextBoxColumn^ DienVien;
+	private: System::Windows::Forms::DataGridViewCheckBoxColumn^ TrangThai;
+
+
+
+
+
+
+
+
+
 
 
 
@@ -111,6 +130,8 @@ namespace ManagementCinema {
 		void InitializeComponent(void)
 		{
 			this->panel1 = (gcnew System::Windows::Forms::Panel());
+			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->txtDienVien = (gcnew System::Windows::Forms::TextBox());
 			this->comboBox1 = (gcnew System::Windows::Forms::ComboBox());
 			this->txtTheLoai = (gcnew System::Windows::Forms::TextBox());
 			this->The = (gcnew System::Windows::Forms::Label());
@@ -135,6 +156,7 @@ namespace ManagementCinema {
 			this->btnThem = (gcnew System::Windows::Forms::Button());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->dataGridView1 = (gcnew System::Windows::Forms::DataGridView());
+			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
 			this->ID = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->MaPhim = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->TenPhim = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
@@ -143,9 +165,8 @@ namespace ManagementCinema {
 			this->NamSanXuat = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->QuocGia = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
 			this->HinhAnh = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
-			this->openFileDialog1 = (gcnew System::Windows::Forms::OpenFileDialog());
-			this->txtDienVien = (gcnew System::Windows::Forms::TextBox());
-			this->label6 = (gcnew System::Windows::Forms::Label());
+			this->DienVien = (gcnew System::Windows::Forms::DataGridViewTextBoxColumn());
+			this->TrangThai = (gcnew System::Windows::Forms::DataGridViewCheckBoxColumn());
 			this->panel1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->panel2->SuspendLayout();
@@ -174,16 +195,37 @@ namespace ManagementCinema {
 			this->panel1->Controls->Add(this->pictureBox1);
 			this->panel1->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel1->Location = System::Drawing::Point(0, 0);
-			this->panel1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->panel1->Margin = System::Windows::Forms::Padding(4);
 			this->panel1->Name = L"panel1";
 			this->panel1->Size = System::Drawing::Size(1301, 293);
 			this->panel1->TabIndex = 0;
 			// 
+			// label6
+			// 
+			this->label6->AutoSize = true;
+			this->label6->Location = System::Drawing::Point(503, 216);
+			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
+			this->label6->Name = L"label6";
+			this->label6->Size = System::Drawing::Size(102, 16);
+			this->label6->TabIndex = 14;
+			this->label6->Text = L"Diễn viên Chính:";
+			// 
+			// txtDienVien
+			// 
+			this->txtDienVien->Location = System::Drawing::Point(631, 210);
+			this->txtDienVien->Margin = System::Windows::Forms::Padding(4);
+			this->txtDienVien->Name = L"txtDienVien";
+			this->txtDienVien->Size = System::Drawing::Size(408, 22);
+			this->txtDienVien->TabIndex = 13;
+			// 
 			// comboBox1
 			// 
+
+
+			this->comboBox1->DropDownStyle = System::Windows::Forms::ComboBoxStyle::DropDownList;
 			this->comboBox1->FormattingEnabled = true;
 			this->comboBox1->Location = System::Drawing::Point(631, 144);
-			this->comboBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->comboBox1->Margin = System::Windows::Forms::Padding(4);
 			this->comboBox1->Name = L"comboBox1";
 			this->comboBox1->Size = System::Drawing::Size(408, 24);
 			this->comboBox1->TabIndex = 5;
@@ -191,7 +233,7 @@ namespace ManagementCinema {
 			// txtTheLoai
 			// 
 			this->txtTheLoai->Location = System::Drawing::Point(631, 177);
-			this->txtTheLoai->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtTheLoai->Margin = System::Windows::Forms::Padding(4);
 			this->txtTheLoai->Name = L"txtTheLoai";
 			this->txtTheLoai->Size = System::Drawing::Size(408, 22);
 			this->txtTheLoai->TabIndex = 6;
@@ -209,7 +251,7 @@ namespace ManagementCinema {
 			// btnChonHinh
 			// 
 			this->btnChonHinh->Location = System::Drawing::Point(631, 240);
-			this->btnChonHinh->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btnChonHinh->Margin = System::Windows::Forms::Padding(4);
 			this->btnChonHinh->Name = L"btnChonHinh";
 			this->btnChonHinh->Size = System::Drawing::Size(127, 33);
 			this->btnChonHinh->TabIndex = 11;
@@ -220,7 +262,7 @@ namespace ManagementCinema {
 			// txtMaPhim
 			// 
 			this->txtMaPhim->Location = System::Drawing::Point(631, 49);
-			this->txtMaPhim->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtMaPhim->Margin = System::Windows::Forms::Padding(4);
 			this->txtMaPhim->Name = L"txtMaPhim";
 			this->txtMaPhim->Size = System::Drawing::Size(408, 22);
 			this->txtMaPhim->TabIndex = 2;
@@ -228,7 +270,7 @@ namespace ManagementCinema {
 			// txtThoiLuong
 			// 
 			this->txtThoiLuong->Location = System::Drawing::Point(631, 81);
-			this->txtThoiLuong->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtThoiLuong->Margin = System::Windows::Forms::Padding(4);
 			this->txtThoiLuong->Name = L"txtThoiLuong";
 			this->txtThoiLuong->Size = System::Drawing::Size(408, 22);
 			this->txtThoiLuong->TabIndex = 3;
@@ -237,7 +279,7 @@ namespace ManagementCinema {
 			// txtNamSanXuat
 			// 
 			this->txtNamSanXuat->Location = System::Drawing::Point(631, 113);
-			this->txtNamSanXuat->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtNamSanXuat->Margin = System::Windows::Forms::Padding(4);
 			this->txtNamSanXuat->Name = L"txtNamSanXuat";
 			this->txtNamSanXuat->Size = System::Drawing::Size(408, 22);
 			this->txtNamSanXuat->TabIndex = 4;
@@ -246,7 +288,7 @@ namespace ManagementCinema {
 			// txtTenPhim
 			// 
 			this->txtTenPhim->Location = System::Drawing::Point(631, 17);
-			this->txtTenPhim->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->txtTenPhim->Margin = System::Windows::Forms::Padding(4);
 			this->txtTenPhim->Name = L"txtTenPhim";
 			this->txtTenPhim->Size = System::Drawing::Size(408, 22);
 			this->txtTenPhim->TabIndex = 1;
@@ -304,7 +346,7 @@ namespace ManagementCinema {
 			// pictureBox1
 			// 
 			this->pictureBox1->Location = System::Drawing::Point(16, 15);
-			this->pictureBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->pictureBox1->Margin = System::Windows::Forms::Padding(4);
 			this->pictureBox1->Name = L"pictureBox1";
 			this->pictureBox1->Size = System::Drawing::Size(448, 258);
 			this->pictureBox1->SizeMode = System::Windows::Forms::PictureBoxSizeMode::StretchImage;
@@ -316,7 +358,7 @@ namespace ManagementCinema {
 			this->panel2->Controls->Add(this->groupBox1);
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel2->Location = System::Drawing::Point(0, 293);
-			this->panel2->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->panel2->Margin = System::Windows::Forms::Padding(4);
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(1301, 94);
 			this->panel2->TabIndex = 1;
@@ -331,9 +373,9 @@ namespace ManagementCinema {
 			this->groupBox1->Controls->Add(this->btnThem);
 			this->groupBox1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->groupBox1->Location = System::Drawing::Point(0, 0);
-			this->groupBox1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->groupBox1->Margin = System::Windows::Forms::Padding(4);
 			this->groupBox1->Name = L"groupBox1";
-			this->groupBox1->Padding = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->groupBox1->Padding = System::Windows::Forms::Padding(4);
 			this->groupBox1->Size = System::Drawing::Size(1301, 94);
 			this->groupBox1->TabIndex = 0;
 			this->groupBox1->TabStop = false;
@@ -351,7 +393,7 @@ namespace ManagementCinema {
 			// btnHuy
 			// 
 			this->btnHuy->Location = System::Drawing::Point(1107, 34);
-			this->btnHuy->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btnHuy->Margin = System::Windows::Forms::Padding(4);
 			this->btnHuy->Name = L"btnHuy";
 			this->btnHuy->Size = System::Drawing::Size(127, 33);
 			this->btnHuy->TabIndex = 4;
@@ -362,7 +404,7 @@ namespace ManagementCinema {
 			// btnLuu
 			// 
 			this->btnLuu->Location = System::Drawing::Point(956, 34);
-			this->btnLuu->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btnLuu->Margin = System::Windows::Forms::Padding(4);
 			this->btnLuu->Name = L"btnLuu";
 			this->btnLuu->Size = System::Drawing::Size(127, 33);
 			this->btnLuu->TabIndex = 3;
@@ -373,7 +415,7 @@ namespace ManagementCinema {
 			// btnXoa
 			// 
 			this->btnXoa->Location = System::Drawing::Point(788, 34);
-			this->btnXoa->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btnXoa->Margin = System::Windows::Forms::Padding(4);
 			this->btnXoa->Name = L"btnXoa";
 			this->btnXoa->Size = System::Drawing::Size(127, 33);
 			this->btnXoa->TabIndex = 2;
@@ -384,7 +426,7 @@ namespace ManagementCinema {
 			// btnSua
 			// 
 			this->btnSua->Location = System::Drawing::Point(616, 34);
-			this->btnSua->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btnSua->Margin = System::Windows::Forms::Padding(4);
 			this->btnSua->Name = L"btnSua";
 			this->btnSua->Size = System::Drawing::Size(127, 33);
 			this->btnSua->TabIndex = 1;
@@ -395,7 +437,7 @@ namespace ManagementCinema {
 			// btnThem
 			// 
 			this->btnThem->Location = System::Drawing::Point(435, 34);
-			this->btnThem->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->btnThem->Margin = System::Windows::Forms::Padding(4);
 			this->btnThem->Name = L"btnThem";
 			this->btnThem->Size = System::Drawing::Size(127, 33);
 			this->btnThem->TabIndex = 0;
@@ -408,7 +450,7 @@ namespace ManagementCinema {
 			this->panel3->Controls->Add(this->dataGridView1);
 			this->panel3->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->panel3->Location = System::Drawing::Point(0, 387);
-			this->panel3->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->panel3->Margin = System::Windows::Forms::Padding(4);
 			this->panel3->Name = L"panel3";
 			this->panel3->Size = System::Drawing::Size(1301, 322);
 			this->panel3->TabIndex = 2;
@@ -417,18 +459,22 @@ namespace ManagementCinema {
 			// 
 			this->dataGridView1->AllowUserToAddRows = false;
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(8) {
+			this->dataGridView1->Columns->AddRange(gcnew cli::array< System::Windows::Forms::DataGridViewColumn^  >(10) {
 				this->ID, this->MaPhim,
-					this->TenPhim, this->ThoiLuong, this->TheLoai, this->NamSanXuat, this->QuocGia, this->HinhAnh
+					this->TenPhim, this->ThoiLuong, this->TheLoai, this->NamSanXuat, this->QuocGia, this->HinhAnh, this->DienVien, this->TrangThai
 			});
 			this->dataGridView1->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->dataGridView1->Location = System::Drawing::Point(0, 0);
-			this->dataGridView1->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(4);
 			this->dataGridView1->Name = L"dataGridView1";
 			this->dataGridView1->RowHeadersWidth = 51;
 			this->dataGridView1->Size = System::Drawing::Size(1301, 322);
 			this->dataGridView1->TabIndex = 0;
 			this->dataGridView1->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &QuanLyPhim::dataGridView1_CellClick);
+			// 
+			// openFileDialog1
+			// 
+			this->openFileDialog1->FileName = L"openFileDialog1";
 			// 
 			// ID
 			// 
@@ -485,6 +531,7 @@ namespace ManagementCinema {
 			// 
 			// QuocGia
 			// 
+
 			this->QuocGia->DataPropertyName = L"QuocGia";
 			this->QuocGia->HeaderText = L"Quốc Gia";
 			this->QuocGia->MinimumWidth = 6;
@@ -501,27 +548,24 @@ namespace ManagementCinema {
 			this->HinhAnh->ReadOnly = true;
 			this->HinhAnh->Width = 125;
 			// 
-			// openFileDialog1
+			// DienVien
 			// 
-			this->openFileDialog1->FileName = L"openFileDialog1";
+			this->DienVien->DataPropertyName = L"DienVien";
+			this->DienVien->HeaderText = L"Diễn Viên";
+			this->DienVien->MinimumWidth = 6;
+			this->DienVien->Name = L"DienVien";
+			this->DienVien->ReadOnly = true;
+			this->DienVien->Width = 125;
 			// 
-			// txtDienVien
+			// TrangThai
 			// 
-			this->txtDienVien->Location = System::Drawing::Point(631, 210);
-			this->txtDienVien->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
-			this->txtDienVien->Name = L"txtDienVien";
-			this->txtDienVien->Size = System::Drawing::Size(408, 22);
-			this->txtDienVien->TabIndex = 13;
-			// 
-			// label6
-			// 
-			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(503, 216);
-			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
-			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(102, 16);
-			this->label6->TabIndex = 14;
-			this->label6->Text = L"Diễn viên Chính:";
+			this->TrangThai->DataPropertyName = L"TrangThai";
+			this->TrangThai->HeaderText = L"Trạng thái";
+			this->TrangThai->MinimumWidth = 6;
+			this->TrangThai->Name = L"TrangThai";
+			this->TrangThai->Resizable = System::Windows::Forms::DataGridViewTriState::True;
+			this->TrangThai->SortMode = System::Windows::Forms::DataGridViewColumnSortMode::Automatic;
+			this->TrangThai->Width = 125;
 			// 
 			// QuanLyPhim
 			// 
@@ -531,7 +575,7 @@ namespace ManagementCinema {
 			this->Controls->Add(this->panel3);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->panel1);
-			this->Margin = System::Windows::Forms::Padding(4, 4, 4, 4);
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"QuanLyPhim";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"MyForm";

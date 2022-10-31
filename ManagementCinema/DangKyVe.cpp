@@ -9,7 +9,7 @@ void ManagementCinema::DangKyVe::LoadDanhSachPhimCoLichChieu()
 	{
 		comboTenPhim->Items->Add(item["Ten"]->ToString() + "-" + item["MaPhim"]->ToString());		
 	}
-	if (dataPhims->Rows->Count > 0) {
+	/*if (dataPhims->Rows->Count > 0) {
 		DataRow^ row = dataPhims->Rows[0];
 		String^ maPhim = row["MaPhim"]->ToString();
 		dataLichChieus = s->LoadDanhSachLichChieuTuongLai(maPhim);
@@ -18,5 +18,16 @@ void ManagementCinema::DangKyVe::LoadDanhSachPhimCoLichChieu()
 		{
 			comboNgayChieu->Items->Add(item["NgayChieu"]->ToString());
 		}
+	}*/
+}
+
+void ManagementCinema::DangKyVe::LoadDanhSachLichChieuTuongLai(String^ maPhim)
+{
+	Store^ s = gcnew Store();
+	dataLichChieus = s->LoadDanhSachLichChieuTuongLai(maPhim);
+
+	for each (DataRow ^ item in dataLichChieus->Rows)
+	{
+		comboNgayChieu->Items->Add(item[0]->ToString());
 	}
 }
