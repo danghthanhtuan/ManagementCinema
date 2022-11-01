@@ -36,6 +36,9 @@
     <ClCompile Include="RapPhim1.cpp">
       <Filter>Header Files</Filter>
     </ClCompile>
+    <ClCompile Include="KhunGio.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QuanLyPhim.h">
@@ -57,6 +60,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RapPhim1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="KhungGio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

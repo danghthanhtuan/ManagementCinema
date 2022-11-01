@@ -10,11 +10,14 @@ public:
 	OleDbConnection^ ConnectionAccess();
 	void CloseAccess(OleDbConnection^ conn);
 	DataTable^ GetAllPhims(String^ timkiemTen);
+	DataTable^ Get1Phim(String^ maPhim);
 	DataTable^ LoadDanhSachLichChieu(String^ maPhim);
 	DataTable^  LoadDanhSachLichChieuTuongLai(String^ maPhim);
-	/*DataTable^ LoadTenPhimLichChieu(String^ maPhim);*/
+	DataTable^ LoadDanhSachLichKhungGio(String^ maPhim,DateTime^ ngay);
 	DataTable^ LoadListRapPhim(String^ maRap);
 	DataTable^ GetPhimCoLichChieu();
+
+	DataTable^ GetRapPhim(String^ rapPhim);
 	bool Sua1LichPhim(String^ idLich, String^ maPhim, String^ rapPhim, String^ giaVe, DateTime^ ngay, DateTime^ gioBatdau, DateTime^ gioKetThuc);
 	bool Them1LichPhim(String^ maPhim, String^ rapPhim, String^ giaVe, DateTime^ ngay, DateTime^ gioBatdau, DateTime^ gioKetThuc);
 	bool CheckPhimTonTai(String^ maPhim);

@@ -124,6 +124,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DangKyVe.cpp" />
+    <ClCompile Include="KhunGio.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Phim.cpp" />
     <ClCompile Include="QuanLyLichChieu.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="DangKyVe.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="KhungGio.h" />
     <ClInclude Include="Main.h">
       <FileType>CppForm</FileType>
     </ClInclude>

@@ -1,7 +1,7 @@
 ﻿#include "Store.h"
 OleDbConnection^ Store::ConnectionAccess()
 {
-	String^ DBPath = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\\BTLOOP\\ManagementCinema\\ManagementCinema\\QLPhim.accdb;Persist Security Info=False;";
+	String^ DBPath = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=D:\\MyProject2\\Winf\\ManagementCinema\\ManagementCinema\\QLPhim.accdb;Persist Security Info=False;";
 	OleDbConnection^ conn = gcnew OleDbConnection(DBPath);
 	conn->Open();
 	return conn;
@@ -23,6 +23,28 @@ DataTable^ Store::Store::GetAllPhims(String^ timkiemTen)
 
 	if (timkiemTen != "") {
 		query += " where Ten like '%" + timkiemTen->Trim() + "%'";
+	}
+	cmd->CommandText = query;
+	cmd->ExecuteNonQuery();
+	OleDbDataAdapter^ adapter = gcnew OleDbDataAdapter(cmd);
+
+	adapter->Fill(results);
+
+	CloseAccess(conn);
+	return results;
+}
+
+DataTable^ Store::Get1Phim(String^ maPhim)
+{
+	OleDbConnection^ conn = ConnectionAccess();
+	DataTable^ results = gcnew DataTable();
+	// tạo câu lệnh lấy dlieu tu database
+	OleDbCommand^ cmd = conn->CreateCommand();
+	cmd->CommandType = CommandType::Text;
+	String^ query = "SELECT * FROM Phim ";
+
+	if (maPhim != "") {
+		query += " where MaPhim = '" + maPhim->Trim() + "'";
 	}
 	cmd->CommandText = query;
 	cmd->ExecuteNonQuery();
@@ -89,6 +111,22 @@ DataTable^ Store::LoadDanhSachLichChieuTuongLai(String^ maPhim)
 	CloseAccess(conn);
 	return results;
 }
+DataTable^ Store::LoadDanhSachLichKhungGio(String^ maPhim, DateTime^ ngay)
+{
+		OleDbConnection^ conn = ConnectionAccess();
+		DataTable^ results = gcnew DataTable();
+		OleDbCommand^ cmd = conn->CreateCommand();
+		cmd->CommandType = CommandType::Text;
+		String^ query ="SELECT * FROM LichPhim WHERE NgayChieu >  #"+ ngay->ToShortDateString() + "# AND NgayChieu <  #" + ngay->AddDays(1).ToShortDateString() + "# AND MaPhim = '" + maPhim + "';";
+		cmd->CommandText = query;
+		cmd->ExecuteNonQuery();
+		OleDbDataAdapter^ adapter = gcnew OleDbDataAdapter(cmd);
+	
+		adapter->Fill(results);
+	
+		CloseAccess(conn);
+		return results;
+}
 //DataTable^ Store::LoadTenPhimLichChieu(String^ maPhim)
 //{
 //	OleDbConnection^ conn = ConnectionAccess();
@@ -132,7 +170,9 @@ DataTable^ Store::LoadListRapPhim(String^ maRap)
 	OleDbCommand^ cmd = conn->CreateCommand();
 	cmd->CommandType = CommandType::Text;
 	String^ query = "SELECT * FROM RapPhim ";
-
+	if (maRap != ""){
+		query += " where MaRap = '"+ maRap +"';";
+	}
 	cmd->CommandText = query;
 	cmd->ExecuteNonQuery();
 	OleDbDataAdapter^ adapter = gcnew OleDbDataAdapter(cmd);
@@ -267,6 +307,11 @@ bool Store::Them1LichPhim(String^ maPhim, String^ rapPhim, String^ giaVe, DateTi
 	bool resutl = cmd->ExecuteNonQuery();
 	CloseAccess(conn);
 	return resutl;
+}
+DataTable^ Store::GetRapPhim(String^ rapPhim)
+{
+	return LoadListRapPhim(rapPhim);
+	// // O: insert return statement here
 }
 bool Store::Sua1LichPhim(String^ idLichPhim, String^ maPhim, String^ rapPhim, String^ giaVe, DateTime^ ngay, DateTime^ gioBatdau, DateTime^ gioKetThuc)
 {
