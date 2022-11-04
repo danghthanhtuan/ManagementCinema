@@ -16,7 +16,7 @@ public:
 	DataTable^ LoadDanhSachLichKhungGio(String^ maPhim,DateTime^ ngay);
 	DataTable^ LoadListRapPhim(String^ maRap);
 	DataTable^ GetPhimCoLichChieu();
-
+	DataTable^ LoadDanhSachGheDaDangKy(String^ idLich, String^ maRap);
 	DataTable^ GetRapPhim(String^ rapPhim);
 	bool Sua1LichPhim(String^ idLich, String^ maPhim, String^ rapPhim, String^ giaVe, DateTime^ ngay, DateTime^ gioBatdau, DateTime^ gioKetThuc);
 	bool Them1LichPhim(String^ maPhim, String^ rapPhim, String^ giaVe, DateTime^ ngay, DateTime^ gioBatdau, DateTime^ gioKetThuc);

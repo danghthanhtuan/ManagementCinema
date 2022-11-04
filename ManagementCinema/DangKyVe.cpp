@@ -74,7 +74,73 @@ void ManagementCinema::DangKyVe::LoadDanhSachGhe(String^ idLich)
 		MessageBox::Show(L"Không tìm thấy rạp phim!", "Thông Báo");
 		return;
 	}
-	//DataTable^ danhSachGheDaDangKy = s->GetLichPhim(maPhim, date);
-	DataTable^ rap = s->GetRapPhim(rapPhim);
-	throw gcnew System::NotImplementedException();
+	danhSachGheDaDangKy = s->LoadDanhSachGheDaDangKy(idLich, rapPhim);
+	DataTable^ rapTable = s->GetRapPhim(rapPhim);
+	DataRow^ rap = rapTable->Rows[0];
+
+	dataGvGhe->AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode::Fill;
+
+	dataGheDangKy->Columns->Clear();
+	dataGheDangKy->Rows->Clear();
+	for (int j = 0; j < int::Parse(rap["SoCot"]->ToString()); j++)
+	{
+		dataGheDangKy->Columns->Add((j + 1).ToString());
+	}
+	
+	for (int i = 0; i < int::Parse(rap["SoHang"]->ToString()); i++)
+	{
+		DataRow^ dr = dataGheDangKy->NewRow();
+		for (int j = 0; j < int::Parse(rap["SoCot"]->ToString()); j++)
+		{
+			dr[j] = GetTenGhe(i) +(j + 1).ToString();
+		}
+		dataGheDangKy->Rows->Add(dr);
+	}
+	dataGvGhe->DataSource = dataGheDangKy;
+	for (int i = 0; i < int::Parse(rap["SoHang"]->ToString()); i++)
+	{
+		dataGvGhe->Rows[i]->ReadOnly = true;
+		for (int j = 0; j < int::Parse(rap["SoCot"]->ToString()); j++)
+		{
+			if (TimKiemGheDangKy(danhSachGheDaDangKy, GetTenGhe(i) + (j + 1).ToString()) == true) {
+				dataGvGhe->Rows[i]->Cells[j]->Style->BackColor = Color::Red;
+			}
+
+			if (i == 0) {
+				dataGvGhe->Columns[j]->SortMode = DataGridViewColumnSortMode::NotSortable;
+			}
+			
+		}
+	}
+}
+
+bool ManagementCinema::DangKyVe::TimKiemGheDangKy(DataTable^ tableLich, String^ maGhe)
+{
+	for each (DataRow^ row in tableLich->Rows)
+	{
+		if (row["MaGhe"]->ToString() == maGhe) {
+			return true;
+		}
+	}
+	return false;
+}
+
+String^ ManagementCinema::DangKyVe::GetTenGhe(int i)
+{
+	switch (i)
+	{
+	case 0: return "A";
+	case 1: return"B";
+	case 2: return"C";
+	case 3: return"D";
+	case 4: return"E";
+	case 5: return"F";
+	case 6: return"G";
+	case 7: return"H";
+	case 8: return"I";
+	case 9: return"J";
+	case 10: return"K";
+	default:
+		break;
+	}
 }

@@ -39,6 +39,9 @@
     <ClCompile Include="KhunGio.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TaoHoaDon.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="QuanLyPhim.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="KhungGio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TaoHoaDon.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

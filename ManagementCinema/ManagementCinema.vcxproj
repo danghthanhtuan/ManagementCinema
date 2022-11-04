@@ -131,6 +131,7 @@
     <ClCompile Include="RapPhim1.cpp" />
     <ClCompile Include="Store.cpp" />
     <ClCompile Include="QuanLyPhim.cpp" />
+    <ClCompile Include="TaoHoaDon.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DangKyVe.h">
@@ -149,6 +150,9 @@
     </ClInclude>
     <ClInclude Include="Store.h" />
     <ClInclude Include="QuanLyPhim.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="TaoHoaDon.h">
       <FileType>CppForm</FileType>
     </ClInclude>
   </ItemGroup>

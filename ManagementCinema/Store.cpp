@@ -75,6 +75,25 @@ DataTable^ Store::Store::GetPhimCoLichChieu()
 	return results;
 }
 
+DataTable^ Store::LoadDanhSachGheDaDangKy(String^ idLich, String^ maRap)
+{
+	OleDbConnection^ conn = ConnectionAccess();
+	DataTable^ results = gcnew DataTable();
+	OleDbCommand^ cmd = conn->CreateCommand();
+	cmd->CommandType = CommandType::Text;
+	String^ query = "SELECT * "
+		+ "FROM DangKyVe "
+		+ "WHERE IDLichPhim = '"+ idLich +"'";
+	cmd->CommandText = query;
+	cmd->ExecuteNonQuery();
+	OleDbDataAdapter^ adapter = gcnew OleDbDataAdapter(cmd);
+
+	adapter->Fill(results);
+
+	CloseAccess(conn);
+	return results;
+}
+
 
 DataTable^ Store::LoadDanhSachLichChieu(String^ maPhim)
 {

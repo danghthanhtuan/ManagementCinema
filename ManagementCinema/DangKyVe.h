@@ -26,6 +26,8 @@ namespace ManagementCinema {
 		void LoadDanhSachLichChieuTuongLai(String^ maPhim);
 		void LoadDanhSachKhungGioChieu(String^ maPhim, DateTime^ date);
 		void LoadDanhSachGhe(String^ idLich);
+		bool TimKiemGheDangKy(DataTable^ tableLich, String^ maGhe);
+		String^ GetTenGhe(int i);
 	protected:
 		/// <summary>
 		/// Clean up any resources being used.
@@ -62,6 +64,8 @@ namespace ManagementCinema {
 	private: System::Windows::Forms::Button^ btnHuy;
 	private: System::Windows::Forms::Button^ btnChon;
 	private: System::Windows::Forms::DataGridView^ dataGvGhe;
+	private: System::Windows::Forms::GroupBox^ gb2;
+	private: System::Windows::Forms::ListView^ lstViewDangChonGhe;
 
 
 
@@ -100,12 +104,15 @@ namespace ManagementCinema {
 			this->btnChon = (gcnew System::Windows::Forms::Button());
 			this->panel3 = (gcnew System::Windows::Forms::Panel());
 			this->dataGvGhe = (gcnew System::Windows::Forms::DataGridView());
+			this->lstViewDangChonGhe = (gcnew System::Windows::Forms::ListView());
+			this->gb2 = (gcnew System::Windows::Forms::GroupBox());
 			this->panel1->SuspendLayout();
 			this->groupBox1->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->pictureBox1))->BeginInit();
 			this->panel2->SuspendLayout();
 			this->panel3->SuspendLayout();
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGvGhe))->BeginInit();
+			this->gb2->SuspendLayout();
 			this->SuspendLayout();
 			// 
 			// panel1
@@ -204,13 +211,14 @@ namespace ManagementCinema {
 			// 
 			// panel2
 			// 
+			this->panel2->Controls->Add(this->gb2);
 			this->panel2->Controls->Add(this->btnLuu);
 			this->panel2->Controls->Add(this->btnHuy);
 			this->panel2->Controls->Add(this->btnChon);
 			this->panel2->Dock = System::Windows::Forms::DockStyle::Top;
 			this->panel2->Location = System::Drawing::Point(0, 181);
 			this->panel2->Name = L"panel2";
-			this->panel2->Size = System::Drawing::Size(933, 42);
+			this->panel2->Size = System::Drawing::Size(933, 65);
 			this->panel2->TabIndex = 1;
 			// 
 			// btnLuu
@@ -218,7 +226,7 @@ namespace ManagementCinema {
 			this->btnLuu->BackColor = System::Drawing::SystemColors::ActiveBorder;
 			this->btnLuu->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnLuu->Location = System::Drawing::Point(655, 6);
+			this->btnLuu->Location = System::Drawing::Point(353, 17);
 			this->btnLuu->Margin = System::Windows::Forms::Padding(2);
 			this->btnLuu->Name = L"btnLuu";
 			this->btnLuu->Size = System::Drawing::Size(103, 30);
@@ -231,7 +239,7 @@ namespace ManagementCinema {
 			this->btnHuy->BackColor = System::Drawing::SystemColors::ActiveBorder;
 			this->btnHuy->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnHuy->Location = System::Drawing::Point(418, 6);
+			this->btnHuy->Location = System::Drawing::Point(199, 17);
 			this->btnHuy->Margin = System::Windows::Forms::Padding(2);
 			this->btnHuy->Name = L"btnHuy";
 			this->btnHuy->Size = System::Drawing::Size(103, 30);
@@ -244,7 +252,7 @@ namespace ManagementCinema {
 			this->btnChon->BackColor = System::Drawing::SystemColors::ActiveBorder;
 			this->btnChon->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10.2F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->btnChon->Location = System::Drawing::Point(170, 6);
+			this->btnChon->Location = System::Drawing::Point(36, 17);
 			this->btnChon->Margin = System::Windows::Forms::Padding(2);
 			this->btnChon->Name = L"btnChon";
 			this->btnChon->Size = System::Drawing::Size(103, 30);
@@ -256,9 +264,9 @@ namespace ManagementCinema {
 			// 
 			this->panel3->Controls->Add(this->dataGvGhe);
 			this->panel3->Dock = System::Windows::Forms::DockStyle::Fill;
-			this->panel3->Location = System::Drawing::Point(0, 223);
+			this->panel3->Location = System::Drawing::Point(0, 246);
 			this->panel3->Name = L"panel3";
-			this->panel3->Size = System::Drawing::Size(933, 335);
+			this->panel3->Size = System::Drawing::Size(933, 312);
 			this->panel3->TabIndex = 2;
 			// 
 			// dataGvGhe
@@ -283,6 +291,7 @@ namespace ManagementCinema {
 			dataGridViewCellStyle2->SelectionForeColor = System::Drawing::SystemColors::HighlightText;
 			dataGridViewCellStyle2->WrapMode = System::Windows::Forms::DataGridViewTriState::False;
 			this->dataGvGhe->DefaultCellStyle = dataGridViewCellStyle2;
+			this->dataGvGhe->Dock = System::Windows::Forms::DockStyle::Fill;
 			this->dataGvGhe->Location = System::Drawing::Point(0, 0);
 			this->dataGvGhe->Margin = System::Windows::Forms::Padding(2);
 			this->dataGvGhe->Name = L"dataGvGhe";
@@ -297,8 +306,30 @@ namespace ManagementCinema {
 			this->dataGvGhe->RowHeadersDefaultCellStyle = dataGridViewCellStyle3;
 			this->dataGvGhe->RowHeadersWidth = 51;
 			this->dataGvGhe->RowTemplate->Height = 24;
-			this->dataGvGhe->Size = System::Drawing::Size(931, 200);
+			this->dataGvGhe->Size = System::Drawing::Size(933, 312);
 			this->dataGvGhe->TabIndex = 0;
+			this->dataGvGhe->CellClick += gcnew System::Windows::Forms::DataGridViewCellEventHandler(this, &DangKyVe::dataGvGhe_CellClick);
+			// 
+			// lstViewDangChonGhe
+			// 
+			this->lstViewDangChonGhe->Dock = System::Windows::Forms::DockStyle::Fill;
+			this->lstViewDangChonGhe->HideSelection = false;
+			this->lstViewDangChonGhe->Location = System::Drawing::Point(3, 16);
+			this->lstViewDangChonGhe->Name = L"lstViewDangChonGhe";
+			this->lstViewDangChonGhe->Size = System::Drawing::Size(427, 46);
+			this->lstViewDangChonGhe->TabIndex = 3;
+			this->lstViewDangChonGhe->UseCompatibleStateImageBehavior = false;
+			// 
+			// gb2
+			// 
+			this->gb2->Controls->Add(this->lstViewDangChonGhe);
+			this->gb2->Dock = System::Windows::Forms::DockStyle::Right;
+			this->gb2->Location = System::Drawing::Point(500, 0);
+			this->gb2->Name = L"gb2";
+			this->gb2->Size = System::Drawing::Size(433, 65);
+			this->gb2->TabIndex = 3;
+			this->gb2->TabStop = false;
+			this->gb2->Text = L"groupBox2";
 			// 
 			// DangKyVe
 			// 
@@ -318,6 +349,7 @@ namespace ManagementCinema {
 			this->panel2->ResumeLayout(false);
 			this->panel3->ResumeLayout(false);
 			(cli::safe_cast<System::ComponentModel::ISupportInitialize^>(this->dataGvGhe))->EndInit();
+			this->gb2->ResumeLayout(false);
 			this->ResumeLayout(false);
 
 		}
@@ -327,7 +359,8 @@ namespace ManagementCinema {
 		DataTable^ dataKhunGioChieus = gcnew DataTable();
 		DataTable^ dataKhunGioChieusSelect = gcnew DataTable();
 		String^ maPhimDangChon = "";
-		
+		DataTable^ dataGheDangKy = gcnew DataTable();
+		DataTable^ danhSachGheDaDangKy = gcnew DataTable();
 #pragma endregion
 	private: System::Void groupBox1_Enter(System::Object^ sender, System::EventArgs^ e) {
 	}
@@ -358,5 +391,20 @@ namespace ManagementCinema {
 		String^ maLich = selected->Split('-')[1];
 		this->LoadDanhSachGhe(maLich);
 	}
-	};
+	private: System::Void dataGvGhe_CellClick(System::Object^ sender, System::Windows::Forms::DataGridViewCellEventArgs^ e) {
+		if (e->RowIndex >= 0)
+		{
+			int a = e->RowIndex;
+			int b = e->ColumnIndex;
+			
+			String^ soGhe = dataGvGhe->Rows[a]->Cells[b]->Value->ToString();
+			ListViewItem^ item = lstViewDangChonGhe->FindItemWithText(soGhe);
+			if (item == nullptr && TimKiemGheDangKy(danhSachGheDaDangKy, soGhe) == false) {
+				lstViewDangChonGhe->Items->Add(soGhe);
+			}
+			
+
+		}
+	}
+};
 }
